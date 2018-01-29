@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="sampleApp">
+<head>
+    <title>Reusing Ctrl</title>
+
+    <script src="library/angular.js"></script>
+    <script>
+        var app = angular.module("sampleApp", []);
+        app.controller("defaultCtrl", function ($scope) {
+            $scope.value;
+            $scope.setCopy = function () {
+                $scope.copy = $scope.value;
+            }
+        });
+        app.controller("default2Ctrl", function ($scope) {
+            
+            $scope.setPaste = function () {
+                $scope.paste = $scope.copy;
+            }
+                
+        });
+    </script>
+</head>
+<body>
+    <!--В данном примере создается два экземпляра scope через одну и ту же фабричную функцию.-->
+    <!--Первый экземпляр-->
+    <div ng-controller="defaultCtrl">
+        <form >
+            <input type="text" ng-model="value"/>
+            <button ng-click="setCopy()">Copy</button>
+        </form>
+        <!--Второй экземпляр-->
+        <div ng-controller="default2Ctrl">
+            <form>
+                <input type="text" ng-value="paste" />
+                <button ng-click="setPaste()">Paste</button>
+            </form>
+        </div>
+    </div>
+
+    
+</body>
+</html>
+

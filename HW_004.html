@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="sampleApp">
+<head>
+    <title>Reusing Ctrl</title>
+    <link href="library/bootstrap-theme.css" rel="stylesheet" />
+    <link href="library/bootstrap.css" rel="stylesheet" />
+    <script src="library/angular.js"></script>
+    <script>
+        var app = angular.module("sampleApp", []);
+        app.controller("plusCtrl", function ($scope) {
+            $scope.b;
+            $scope.a;
+            
+            $scope.res = { res: "" };
+            $scope.setPlus = function () {
+                var a = parseFloat($scope.a);
+                var b = parseFloat($scope.b);
+                $scope.res.res = a + b;
+            }
+        });
+        app.controller("minusCtrl", function ($scope) {
+
+            $scope.setMinus = function () {
+                var a = parseFloat($scope.a);
+                var b = parseFloat($scope.b);
+                $scope.res.res = a - b;
+            }
+
+        });
+        app.controller("divCtrl", function ($scope) {
+
+            $scope.setDiv = function () {
+                var a = parseFloat($scope.a);
+                var b = parseFloat($scope.b);
+                $scope.res.res = a / b;
+            }
+
+        });
+        app.controller("musCtrl", function ($scope) {
+
+            $scope.setMus = function () {
+                var a = parseFloat($scope.a);
+                var b = parseFloat($scope.b);
+                $scope.res.res = a * b;
+            }
+
+        });
+        app.controller("linkCtrl", function ($scope) {
+            $scope.setLink = function () {
+                location.href = "Samples/HtmlPage.html";
+            }
+        });
+        
+    </script>
+</head>
+<body>
+    <!--В данном примере создается два экземпляра scope через одну и ту же фабричную функцию.-->
+    <!--Первый экземпляр-->
+    <div ng-controller="plusCtrl">
+        <div class="container panel">
+            <br />
+            <div class="form-group row">
+                <label class="col-sm-2 control-label" for="a">A:</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" id="a" ng-model="a" />
+                </div>
+                
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 control-label" for="b">B:</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" id="b" ng-model="b" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 control-label" for="res">Result:</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" id="res" ng-model="res.res" />
+                </div>  
+            </div>
+
+        </div>
+        
+            <br />
+            <!--<button ng-click="setPlus()">+</button>-->
+
+            <div ng-controller="minusCtrl">
+                <!--<button ng-click="setMinus()">-</button>-->
+
+                <div ng-controller="divCtrl">
+                    <!--<button ng-click="setDiv()">/</button>-->
+
+                    <div ng-controller="musCtrl">
+
+                        <div ng-controller="linkCtrl">
+                            <div class="container panel">
+                                <button style="width:100px; font-size:25px" class="btn btn-primary" ng-click="setPlus()">+</button>
+
+                                <button style="width:100px; font-size:25px" class="btn btn-success" ng-click="setMinus()">-</button>
+
+                                <button style="width:100px; font-size:25px" class="btn btn-danger" ng-click="setDiv()">/</button>
+
+                                <button style="width:100px; font-size:25px" class="btn btn-info" ng-click="setMus()">&bull;</button>
+
+                                <button style="width:100px; font-size:25px" class="btn btn-info" ng-click="setLink()">link</button>
+                            </div>
+                        </div>
+                        
+                        
+                        <br />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+</body>
+</html>
+

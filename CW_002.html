@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="SampleApp">
+<head>
+    <title>ng-switch</title>
+    
+    <script src="library/angular.js"></script>
+    <link href="library/bootstrap-theme.css" rel="stylesheet" />
+    <link href="library/bootstrap.css" rel="stylesheet" />
+    <script>
+        var app = angular.module("SampleApp", []);
+
+        app.controller("SampleAppCtrl", function ($scope) {
+
+            $scope.res;
+            $scope.result;
+            $scope.items = [{ name: "1"},
+                { name: "2" }];
+
+           
+
+            $scope.Add = function () {
+                var a = parseFloat($scope.items[0].name);
+                var b = parseFloat($scope.items[1].name);
+                $scope.res = a + b;
+            }
+            $scope.Minus = function () {
+                var a = parseFloat($scope.items[0].name);
+                var b = parseFloat($scope.items[1].name);
+                $scope.res = a - b;
+            }
+            $scope.Mus = function () {
+                var a = parseFloat($scope.items[0].name);
+                var b = parseFloat($scope.items[1].name);
+                $scope.res = a * b;
+            }
+            $scope.Div = function () {
+                var a = parseFloat($scope.items[0].name);
+                var b = parseFloat($scope.items[1].name);
+                if (b != 0) {
+                    $scope.res = a / b;
+                }
+                $scope.res = "ERORR b=0";
+            }
+        });
+    </script>
+</head>
+<body ng-controller="SampleAppCtrl">
+    <div class="container">
+        <div class="input-group">
+            <label for="usr">A:</label>
+            <input type="text" id="usr" class="form-control" ng-model="items[0].name" />
+        </div>
+        <div class="input-group">
+            <label for="pwd">B:</label>
+            <input type="text" id="pwd" class="form-control" ng-model="items[1].name" />
+        </div>
+        
+        <p>{{res}}</p>
+
+        <div class="btn-group">
+            <button class="btn btn-primary" ng-click="Add()">+</button>
+            <button class="btn btn-success" ng-click="Minus()">-</button>
+            <button class="btn btn-danger" ng-click="Mus()">&bull;</button>
+            <button class="btn btn-info" ng-click="Div()">/</button>
+        </div>
+    </div>
+  
+</body>
+</html>
